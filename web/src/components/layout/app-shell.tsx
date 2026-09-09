@@ -14,6 +14,7 @@ import {
   ChevronRight,
   Download,
   Upload,
+  History,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -21,6 +22,7 @@ const NAV_ITEMS = [
   { href: "/planner", label: "Planner", icon: CalendarDays },
   { href: "/focus", label: "Focus", icon: Clock },
   { href: "/insights", label: "Insights", icon: BarChart3 },
+  { href: "/history", label: "History", icon: History },
   { href: "/progression", label: "Progression", icon: Trophy },
   { href: "/settings", label: "Settings", icon: Settings },
 ];

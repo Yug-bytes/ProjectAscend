@@ -1,100 +1,100 @@
 "use client";
 
+import React, { useState, useMemo } from "react";
+import Link from "next/link";
 import AppShell from "@/components/layout/app-shell";
-import { timeOfDayGreeting } from "@/lib/format";
+import HeroCard from "@/components/dashboard/hero-card";
+import ProgressCard from "@/components/dashboard/progress-card";
+import ActivitySection from "@/components/dashboard/activity-section";
+import AddActivityDialog from "@/components/planner/add-activity-dialog";
+import { PlayerCard } from "@/components/dashboard/player-card";
+import FocusCard from "@/components/dashboard/focus-card";
+import { todayISO } from "@/lib/date-utils";
+import { db } from "@/lib/db";
+import { useLiveQuery } from "dexie-react-hooks";
+import type { Activity } from "@/lib/types";
 
 export default function DashboardPage() {
+  const todayDate = useMemo(() => todayISO(), []);
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [editingActivity, setEditingActivity] = useState<Activity | null>(null);
+
+  // Live query for today's activities
+  const activities = useLiveQuery(
+    () => db.getActivitiesForDate(todayDate),
+    [todayDate],
+    []
+  );
+
+  // Live query for daily goal
+  const dailyGoal = useLiveQuery(
+    () => db.getDailyGoal(),
+    [],
+    360
+  );
+
+  // Live query for total XP
+  const totalXp = useLiveQuery(
+    () => db.getTotalXp(),
+    [],
+    0
+  );
+
+  const completedActivities = activities.filter((a) => a.completed === 1);
+  const studyMinutes = completedActivities.reduce(
+    (sum, a) => sum + Math.max(0, a.actual_minutes || 0),
+    0
+  );
+
+  const handleOpenAdd = () => {
+    setEditingActivity(null);
+    setDialogOpen(true);
+  };
+
+  const handleOpenEdit = (activity: Activity) => {
+    setEditingActivity(activity);
+    setDialogOpen(true);
+  };
+
   return (
     <AppShell>
       <div className="p-6 lg:p-8 max-w-[1400px] mx-auto space-y-6">
-        {/* Page header */}
-        <div className="border-b border-[var(--border)] pb-4">
-          <h1 className="text-[22px] font-extrabold text-[var(--text-primary)]">
-            {timeOfDayGreeting()}
-          </h1>
-          <p className="text-[12px] text-[var(--text-muted)] mt-1">
-            {new Date().toLocaleDateString("en-GB", {
-              weekday: "long",
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </p>
-        </div>
+        {/* Hero context bar */}
+        <HeroCard onAddActivity={handleOpenAdd} />
 
-        {/* Placeholder content — Phase 1 will add dashboard widgets */}
+        {/* Dashboard Grid: Progress Card + Player Card Placeholder */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-          {/* Progress Card placeholder */}
-          <div className="lg:col-span-3 rounded-[14px] border border-[var(--border)] bg-[var(--surface)] p-5 min-h-[120px]">
-            <p className="text-[12px] font-semibold text-[var(--text-muted)] uppercase tracking-wider">
-              Daily Progress
-            </p>
-            <p className="text-[26px] font-extrabold text-[var(--text-primary)] mt-2">
-              0m
-            </p>
-            <p className="text-[12px] text-[var(--text-muted)] mt-1">
-              Start a focus session to begin tracking
-            </p>
+          <div className="lg:col-span-3">
+            <ProgressCard
+              dailyGoal={dailyGoal}
+              studyMinutes={studyMinutes}
+              completedCount={completedActivities.length}
+              totalCount={activities.length}
+            />
           </div>
 
-          {/* Player Card placeholder */}
-          <div className="lg:col-span-2 rounded-[14px] border border-[var(--border)] bg-[var(--surface)] p-5 min-h-[120px]">
-            <p className="text-[12px] font-semibold text-[var(--text-muted)] uppercase tracking-wider">
-              Level
-            </p>
-            <p className="text-[20px] font-extrabold text-[var(--accent)] mt-2">
-              Level 1
-            </p>
-            <p className="text-[12px] text-[var(--text-muted)] mt-1">
-              0 / 100 XP
-            </p>
-          </div>
+          {/* Player Card */}
+          <PlayerCard className="lg:col-span-2" />
         </div>
 
-        {/* Focus Card placeholder */}
-        <div className="rounded-[14px] border border-[var(--primary-muted)] p-6 focus-card-gradient">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[12px] font-semibold text-[var(--text-muted)] uppercase tracking-wider">
-                Focus Timer
-              </p>
-              <p className="text-[52px] font-extrabold text-[var(--primary)] mt-1 tracking-tight font-mono">
-                00:00:00
-              </p>
-              <p className="text-[13px] text-[var(--text-secondary)] mt-1">
-                Current Activity: Ready
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <button className="px-4 py-2 rounded-[10px] bg-[var(--primary)] text-white font-bold text-[13px] hover:bg-[var(--primary-hover)] transition-colors">
-                Start
-              </button>
-            </div>
-          </div>
-        </div>
+        {/* Focus Timer Card */}
+        <FocusCard activities={activities} />
 
-        {/* Activities placeholder */}
-        <div className="rounded-[14px] border border-[var(--border)] bg-[var(--surface)] p-5">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[15px] font-bold text-[var(--text-primary)]">
-              Today&apos;s Activities
-            </h2>
-            <button className="px-3 py-1.5 rounded-[10px] bg-[var(--surface-elevated)] border border-[var(--border-strong)] text-[13px] font-semibold text-[var(--text-secondary)] hover:bg-[var(--surface-hover)] hover:text-[var(--text-primary)] transition-colors">
-              + Add Activity
-            </button>
-          </div>
-          <div className="flex flex-col items-center justify-center py-8 text-center">
-            <div className="w-[54px] h-[54px] rounded-full bg-[var(--surface-elevated)] border border-[var(--primary-muted)] flex items-center justify-center text-[30px] text-[var(--primary)] mb-3">
-              📋
-            </div>
-            <p className="text-[13px] text-[var(--text-muted)]">
-              No activities planned for today
-            </p>
-            <p className="text-[12px] text-[var(--text-muted)] mt-1">
-              Add an activity to get started
-            </p>
-          </div>
-        </div>
+        {/* Today's Activities Section */}
+        <ActivitySection
+          activities={activities}
+          onAddActivity={handleOpenAdd}
+          onEditActivity={handleOpenEdit}
+        />
+
+        {/* Add/Edit Activity Modal */}
+        <AddActivityDialog
+          isOpen={dialogOpen}
+          onClose={() => setDialogOpen(false)}
+          selectedDate={todayDate}
+          activity={editingActivity}
+        />
       </div>
     </AppShell>
   );
