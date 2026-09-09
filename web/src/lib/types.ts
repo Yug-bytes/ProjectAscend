@@ -177,10 +177,15 @@ export interface CalibrationObservation {
   name: string;
   estimated_minutes: number;
   actual_minutes: number;
+  relative_error: number;
+  absolute_error_minutes: number;
+  absolute_percentage_error: number;
 }
 
 export interface CalibrationSummary {
   sample_count: number;
+  excluded_count: number;
+  pending_count: number;
   mean_relative_error: number | null;
   median_relative_error: number | null;
   mean_absolute_percentage_error: number | null;
@@ -189,8 +194,21 @@ export interface CalibrationSummary {
   bias: BiasClassification;
 }
 
-export interface CategoryCalibration extends CalibrationSummary {
+export interface CategoryCalibration {
   activity_type: string;
+  sample_count: number;
+  mean_relative_error: number | null;
+  mean_absolute_percentage_error: number | null;
+  bias: BiasClassification;
+  evidence_level: EvidenceLevel;
+  suggested_multiplier: number | null;
+}
+
+export interface CalibrationReport {
+  summary: CalibrationSummary;
+  categories: CategoryCalibration[];
+  observations: CalibrationObservation[];
+  generated_at: string;
 }
 
 // ─── Character Types ─────────────────────────────────────────────────────────
@@ -208,7 +226,9 @@ export type CharacterId =
 export interface CharacterDefinition {
   id: CharacterId;
   name: string;
+  title?: string;
   specialization: string;
+  description?: string;
   icon: string;
   primary_color: string;
   secondary_color: string;
@@ -220,6 +240,27 @@ export interface EvolutionInfo {
   stage: EvolutionStage;
   name: string;
   min_level: number;
+  required_xp?: number;
+  next_stage_level?: number | null;
+}
+
+export type EvolutionStageInfo = Required<EvolutionInfo>;
+
+export interface ProgressionEventsResult {
+  total_xp: number;
+  current_level: number;
+  evolution_stage: EvolutionStage;
+  new_levels_recorded: number[];
+  new_achievements: AchievementDefinition[];
+  new_milestones: Array<{
+    milestone_id: string;
+    milestone_name: string;
+    tier: number;
+    label: string;
+    threshold: number;
+    reached_at: string;
+  }>;
+  trigger_event: string;
 }
 
 // ─── Achievement Definition Types ────────────────────────────────────────────

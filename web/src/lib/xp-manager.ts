@@ -15,7 +15,10 @@ import {
   TIER_2_MAX_LEVEL,
   TIER_2_TOTAL_XP,
   TIER_3_XP_PER_LEVEL,
+  XP_PER_ACTIVITY_COMPLETION,
+  XP_PER_DAILY_GOAL,
 } from './constants';
+import { db } from './db';
 
 /**
  * Get the XP threshold required to reach a given level.
@@ -64,4 +67,45 @@ export function getLevelProgress(totalXp: number): {
   const xpRemaining = xpForLevel - xpIntoLevel;
 
   return { level, xpIntoLevel, xpForLevel, xpRemaining };
+}
+
+/**
+ * Award XP for an activity completion event.
+ */
+export async function awardActivityCompletion(
+  activityId: number,
+  amount: number = XP_PER_ACTIVITY_COMPLETION
+): Promise<boolean> {
+  return db.awardActivityCompletionXp(activityId, amount);
+}
+
+/**
+ * Void XP for an uncompleted or cancelled activity.
+ */
+export async function voidActivityCompletion(activityId: number): Promise<boolean> {
+  return db.voidActivityCompletionXp(activityId);
+}
+
+/**
+ * Award XP for reaching the daily focus goal.
+ */
+export async function awardDailyGoal(
+  date: string,
+  amount: number = XP_PER_DAILY_GOAL
+): Promise<boolean> {
+  return db.awardDailyGoalXp(date, amount);
+}
+
+/**
+ * Sync and reconcile the total XP cache from the authoritative ledger.
+ */
+export async function syncTotalXp(): Promise<number> {
+  return db.syncTotalXpCache();
+}
+
+/**
+ * Retrieve total authoritative XP.
+ */
+export async function getTotalXp(): Promise<number> {
+  return db.getTotalXp();
 }
