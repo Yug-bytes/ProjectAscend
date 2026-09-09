@@ -190,16 +190,16 @@ export class AscendDatabase extends Dexie {
     return true;
   }
 
-  async syncTotalXpCache(): Promise<number> {
+  async getTotalXp(): Promise<number> {
     const events = await this.xpEvents.toArray();
     const total = events.reduce((sum, e) => sum + e.amount, 0);
-    const clamped = Math.max(0, total);
-    await this.setSetting('total_xp', String(clamped));
-    return clamped;
+    return Math.max(0, total);
   }
 
-  async getTotalXp(): Promise<number> {
-    return this.syncTotalXpCache();
+  async syncTotalXpCache(): Promise<number> {
+    const clamped = await this.getTotalXp();
+    await this.setSetting('total_xp', String(clamped));
+    return clamped;
   }
 
   async getXpEventsForDateRange(startDate: string, endDate: string): Promise<XpEvent[]> {

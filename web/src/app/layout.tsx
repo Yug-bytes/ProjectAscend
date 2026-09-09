@@ -33,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="dark" className={inter.variable}>
-      <body className="min-h-screen bg-[var(--background)] text-[var(--text-primary)] antialiased">
+    <html lang="en" data-theme="dark" className={inter.variable} suppressHydrationWarning>
+      <body className="min-h-screen bg-[var(--background)] text-[var(--text-primary)] antialiased" suppressHydrationWarning>
         <PwaRegister />
         {children}
       </body>
