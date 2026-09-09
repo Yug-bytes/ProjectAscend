@@ -25,3 +25,9 @@ Database/*.db-shm
 
 # Test artifacts
 .pytest_cache/
+
+# Web Next.js
+web/node_modules/
+web/.next/
+web/out/
+web/.vercel/
