@@ -44,7 +44,13 @@ export default function InsightsPage() {
     setLoading(true);
     setError(false);
     try {
-      const result = await insightsService.buildDashboard(rangeKey, todayStr);
+      // Timeout guard: if buildDashboard hangs > 8s, bail out gracefully
+      const result = await Promise.race([
+        insightsService.buildDashboard(rangeKey, todayStr),
+        new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error("Insights timed out")), 8000)
+        ),
+      ]);
       setData(result);
     } catch (err) {
       console.error("Error building insights dashboard:", err);
