@@ -405,9 +405,13 @@ export class InsightsService {
     >();
 
     let cur = startDate;
-    while (cur <= endDate) {
+    let safety = 0;
+    while (cur <= endDate && safety < 400) {
       totals.set(cur, { focusMinutes: 0, completedTasks: 0, totalTasks: 0 });
-      cur = addDays(cur, 1);
+      const next = addDays(cur, 1);
+      if (next === cur) break; // prevent infinite loop if addDays fails
+      cur = next;
+      safety++;
     }
 
     for (const act of activities) {
