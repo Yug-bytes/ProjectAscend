@@ -101,7 +101,7 @@ export default function SettingsPage() {
 
   return (
     <AppShell>
-      <div className="p-6 lg:p-8 max-w-[1000px] mx-auto space-y-8">
+      <div className="p-4 md:p-6 lg:p-8 max-w-[1000px] mx-auto space-y-6 md:space-y-8">
         {/* Header */}
         <div className="border-b border-[var(--border)] pb-4 flex items-center justify-between">
           <div>
@@ -183,18 +183,18 @@ export default function SettingsPage() {
             </div>
           </div>
 
-          <form onSubmit={handleSaveDisplayName} className="flex gap-3 pt-2">
+          <form onSubmit={handleSaveDisplayName} className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-2">
             <input
               type="text"
               value={displayName}
               maxLength={32}
               onChange={(e) => setDisplayName(e.target.value)}
-              className="flex-1 max-w-[320px] px-3.5 py-2 rounded-[10px] bg-[var(--surface-secondary)] border border-[var(--border)] text-[13px] text-[var(--text-primary)] focus:border-[var(--primary)] outline-none"
+              className="w-full sm:max-w-[320px] px-3.5 py-2.5 rounded-[10px] bg-[var(--surface-secondary)] border border-[var(--border)] text-[13px] text-[var(--text-primary)] focus:border-[var(--primary)] outline-none min-h-[44px]"
               placeholder="Ascender"
             />
             <button
               type="submit"
-              className="px-4 py-2 rounded-[10px] bg-[var(--primary)] text-white text-[13px] font-bold hover:bg-[var(--primary-hover)] transition-colors"
+              className="px-4 py-2.5 rounded-[10px] bg-[var(--primary)] text-white text-[13px] font-bold hover:bg-[var(--primary-hover)] transition-colors min-h-[44px] cursor-pointer"
             >
               Save Name
             </button>
@@ -305,16 +305,16 @@ export default function SettingsPage() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 pt-2">
             <button
               onClick={downloadExport}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-[10px] bg-[var(--surface-secondary)] border border-[var(--border)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] text-[13px] font-bold transition-colors"
+              className="flex items-center justify-center gap-2 px-4 py-3 sm:py-2.5 rounded-[10px] bg-[var(--surface-secondary)] border border-[var(--border)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] text-[13px] font-bold transition-colors min-h-[44px] cursor-pointer"
             >
               <Download size={16} />
               <span>Export Backup (JSON)</span>
             </button>
 
-            <label className="flex items-center gap-2 px-4 py-2.5 rounded-[10px] bg-[var(--surface-secondary)] border border-[var(--border)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] text-[13px] font-bold transition-colors cursor-pointer">
+            <label className="flex items-center justify-center gap-2 px-4 py-3 sm:py-2.5 rounded-[10px] bg-[var(--surface-secondary)] border border-[var(--border)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] text-[13px] font-bold transition-colors cursor-pointer min-h-[44px]">
               <Upload size={16} />
               <span>Restore Backup (JSON)</span>
               <input
@@ -327,7 +327,7 @@ export default function SettingsPage() {
 
             <button
               onClick={() => setShowClearConfirm(true)}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-[10px] bg-red-950/30 border border-red-800/40 text-red-400 hover:bg-red-950/60 text-[13px] font-bold transition-colors ml-auto"
+              className="flex items-center justify-center gap-2 px-4 py-3 sm:py-2.5 rounded-[10px] bg-red-950/30 border border-red-800/40 text-red-400 hover:bg-red-950/60 text-[13px] font-bold transition-colors sm:ml-auto min-h-[44px] cursor-pointer"
             >
               <Trash2 size={16} />
               <span>Clear All Data</span>
@@ -336,12 +336,12 @@ export default function SettingsPage() {
         </div>
 
         {/* 5. About Ascend */}
-        <div className="p-5 rounded-[14px] border border-[var(--border)] bg-[var(--surface-secondary)] flex items-center justify-between text-[12px] text-[var(--text-muted)]">
+        <div className="p-4 sm:p-5 rounded-[14px] border border-[var(--border)] bg-[var(--surface-secondary)] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-[12px] text-[var(--text-muted)]">
           <div className="flex items-center gap-2">
-            <Info size={16} className="text-[var(--primary)]" />
+            <Info size={16} className="text-[var(--primary)] shrink-0" />
             <span>Project Ascend Web v1.5.0 — Direct client-side port from PySide6 desktop.</span>
           </div>
-          <span className="font-mono">Local-First Architecture</span>
+          <span className="font-mono text-[11px] self-start sm:self-auto">Local-First Architecture</span>
         </div>
 
         {/* Clear Data Confirmation Modal */}

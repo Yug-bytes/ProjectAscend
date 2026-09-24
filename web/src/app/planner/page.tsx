@@ -89,7 +89,7 @@ export default function PlannerPage() {
 
   return (
     <AppShell>
-      <div className="p-6 lg:p-8 max-w-[1200px] mx-auto space-y-6">
+      <div className="p-4 md:p-6 lg:p-8 max-w-[1200px] mx-auto space-y-4 md:space-y-6">
         {/* Page Header / Date Card */}
         <div className="rounded-[14px] border border-[var(--border)] bg-[var(--surface)] p-5 lg:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">

@@ -197,3 +197,24 @@ body {
 .focus-card-gradient {
   background: linear-gradient(to right, var(--primary-soft), var(--surface));
 }
+
+/* ─── Mobile safe area for bottom tab bar (iPhone notch/dynamic island) ── */
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ─── Mobile touch scrolling ──────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  /* Prevent horizontal overflow on mobile */
+  html, body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure content doesn't bleed past viewport */
+  main {
+    max-width: 100vw;
+  }
+}

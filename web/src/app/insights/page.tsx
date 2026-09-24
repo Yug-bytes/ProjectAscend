@@ -73,7 +73,7 @@ export default function InsightsPage() {
 
   return (
     <AppShell>
-      <div className="p-6 lg:p-8 max-w-[1400px] mx-auto space-y-6 animate-in fade-in duration-200">
+      <div className="p-4 md:p-6 lg:p-8 max-w-[1400px] mx-auto space-y-4 md:space-y-6 animate-in fade-in duration-200">
         {/* Top Header & Range Filters */}
         <div className="border-b border-[var(--border)] pb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -87,14 +87,14 @@ export default function InsightsPage() {
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
             {/* Range selection button group */}
-            <div className="inline-flex rounded-[8px] bg-[var(--surface-elevated)] p-1 border border-[var(--border)]">
+            <div className="inline-flex max-w-full overflow-x-auto rounded-[8px] bg-[var(--surface-elevated)] p-1 border border-[var(--border)] scrollbar-none">
               {RANGE_TABS.map((tab) => {
                 const isSelected = selectedRange === tab.key;
                 return (
                   <button
                     key={tab.key}
                     onClick={() => setSelectedRange(tab.key)}
-                    className={`px-3 py-1 text-[12px] font-semibold rounded-[6px] transition-all cursor-pointer ${
+                    className={`shrink-0 px-3 py-1.5 text-[12px] font-semibold rounded-[6px] transition-all cursor-pointer min-h-[36px] flex items-center justify-center ${
                       isSelected
                         ? "bg-[var(--primary)] text-white shadow-sm"
                         : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"

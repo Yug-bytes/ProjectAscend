@@ -131,7 +131,7 @@ export default function AddActivityDialog({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
       <div
-        className="w-full max-w-[440px] rounded-[18px] border border-[var(--border-strong)] bg-[var(--surface)] p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-150"
+        className="w-full max-w-[440px] max-h-[90vh] overflow-y-auto rounded-[18px] border border-[var(--border-strong)] bg-[var(--surface)] p-4 sm:p-6 shadow-2xl space-y-4 sm:space-y-5 animate-in fade-in zoom-in-95 duration-150"
         role="dialog"
         aria-modal="true"
       >

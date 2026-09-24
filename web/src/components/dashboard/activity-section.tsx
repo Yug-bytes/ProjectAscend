@@ -114,7 +114,7 @@ export default function ActivitySection({
                   <button
                     type="button"
                     onClick={() => handleToggleCompleted(act)}
-                    className="text-[var(--text-muted)] hover:text-[var(--success)] transition-colors shrink-0 cursor-pointer"
+                    className="w-9 h-9 rounded-full flex items-center justify-center -ml-1 text-[var(--text-muted)] hover:text-[var(--success)] transition-colors shrink-0 cursor-pointer"
                     title={isCompleted ? "Mark incomplete" : "Mark complete"}
                   >
                     {isCompleted ? (
@@ -132,16 +132,20 @@ export default function ActivitySection({
                     >
                       {act.name}
                     </p>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <span className="px-2 py-0.5 rounded-[6px] text-[10px] font-semibold tracking-wider bg-[var(--surface)] border border-[var(--border)] text-[var(--text-secondary)]">
                         {act.activity_type}
+                      </span>
+                      {/* Mobile-visible duration indicator */}
+                      <span className="text-[11px] text-[var(--text-muted)] sm:hidden">
+                        {act.estimated_minutes}m{isCompleted && ` (${act.actual_minutes}m)`}
                       </span>
                     </div>
                   </div>
                 </div>
 
                 {/* Right: Estimated / Actual times + Status Badge + Menu */}
-                <div className="flex items-center gap-3 shrink-0">
+                <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
                   <div className="text-right text-[11px] hidden sm:block">
                     <span className="text-[var(--text-muted)]">Est: </span>
                     <span className="font-bold text-[var(--text-primary)]">{act.estimated_minutes}m</span>
@@ -159,7 +163,7 @@ export default function ActivitySection({
                         : "bg-[var(--surface)] text-[var(--text-muted)] border border-[var(--border)]"
                     }`}
                   >
-                    {isCompleted ? "Completed" : "Planned"}
+                    {isCompleted ? "Done" : "Planned"}
                   </span>
 
                   {/* Actions Dropdown */}
@@ -167,9 +171,9 @@ export default function ActivitySection({
                     <button
                       type="button"
                       onClick={() => setMenuOpenId(isMenuOpen ? null : act.id ?? null)}
-                      className="w-7 h-7 rounded-[6px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)] transition-colors cursor-pointer"
+                      className="w-8 h-8 rounded-[8px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)] transition-colors cursor-pointer"
                     >
-                      <MoreVertical size={15} />
+                      <MoreVertical size={16} />
                     </button>
 
                     {isMenuOpen && (

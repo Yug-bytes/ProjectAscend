@@ -57,11 +57,11 @@ export default function CapacityCard({
       </div>
 
       {/* Available Time Controls */}
-      <div className="mt-4 pt-3.5 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3">
-        <form onSubmit={handleApply} className="flex items-center gap-2.5">
+      <div className="mt-4 pt-3.5 border-t border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <form onSubmit={handleApply} className="flex flex-wrap items-center gap-2 sm:gap-2.5">
           <label
             htmlFor="available-time-input"
-            className="text-[11px] font-bold text-[var(--text-muted)] tracking-wider uppercase"
+            className="text-[11px] font-bold text-[var(--text-muted)] tracking-wider uppercase shrink-0"
           >
             Available time
           </label>
@@ -74,7 +74,7 @@ export default function CapacityCard({
               step={15}
               value={inputValue}
               onChange={(e) => setInputValue(Math.max(0, Math.min(1440, Number(e.target.value) || 0)))}
-              className="w-24 px-2.5 py-1.5 rounded-[8px] border border-[var(--border-strong)] bg-[var(--surface-elevated)] text-[13px] font-bold text-[var(--text-primary)] text-right pr-9 focus:outline-none focus:border-[var(--primary)]"
+              className="w-24 px-2.5 py-2 sm:py-1.5 rounded-[8px] border border-[var(--border-strong)] bg-[var(--surface-elevated)] text-[13px] font-bold text-[var(--text-primary)] text-right pr-9 focus:outline-none focus:border-[var(--primary)] min-h-[38px]"
             />
             <span className="absolute right-2.5 text-[11px] font-medium text-[var(--text-muted)] pointer-events-none">
               min
@@ -83,7 +83,7 @@ export default function CapacityCard({
 
           <button
             type="submit"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] bg-[var(--surface-elevated)] hover:bg-[var(--surface-hover)] border border-[var(--border-strong)] text-[12px] font-semibold text-[var(--text-primary)] transition-colors cursor-pointer"
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 sm:py-1.5 rounded-[8px] bg-[var(--surface-elevated)] hover:bg-[var(--surface-hover)] border border-[var(--border-strong)] text-[12px] font-semibold text-[var(--text-primary)] transition-colors cursor-pointer min-h-[38px]"
           >
             <Check size={14} className="text-[var(--primary)]" />
             {hasAvailableTime ? "Change" : "Set"}
@@ -94,7 +94,7 @@ export default function CapacityCard({
           <button
             type="button"
             onClick={() => onClearAvailableTime()}
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[8px] bg-[var(--surface-elevated)] hover:bg-[var(--surface-hover)] border border-[var(--border)] text-[12px] font-medium text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+            className="inline-flex items-center justify-center gap-1 px-3 py-2 sm:py-1.5 rounded-[8px] bg-[var(--surface-elevated)] hover:bg-[var(--surface-hover)] border border-[var(--border)] text-[12px] font-medium text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer self-start sm:self-auto min-h-[38px]"
           >
             <X size={13} />
             Clear

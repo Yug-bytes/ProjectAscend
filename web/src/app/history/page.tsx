@@ -161,7 +161,7 @@ export default function HistoryPage() {
 
   return (
     <AppShell>
-      <div className="p-6 lg:p-8 max-w-[1400px] mx-auto space-y-6">
+      <div className="p-4 md:p-6 lg:p-8 max-w-[1400px] mx-auto space-y-4 md:space-y-6">
         {/* Page header */}
         <div className="border-b border-[var(--border)] pb-4 flex items-center justify-between">
           <div>
@@ -433,23 +433,23 @@ export default function HistoryPage() {
                         {dayDetails.activities.map((act) => (
                           <div
                             key={act.id}
-                            className="flex items-center justify-between p-3 rounded-[10px] bg-[var(--surface-secondary)] border border-[var(--border)]"
+                            className="flex items-center justify-between gap-2.5 p-3 rounded-[10px] bg-[var(--surface-secondary)] border border-[var(--border)]"
                           >
-                            <div className="flex items-center gap-2.5">
+                            <div className="flex items-center gap-2.5 min-w-0 flex-1">
                               <CheckCircle2
                                 size={16}
-                                className={act.completed ? "text-[var(--success)]" : "text-[var(--text-muted)]"}
+                                className={`shrink-0 ${act.completed ? "text-[var(--success)]" : "text-[var(--text-muted)]"}`}
                               />
-                              <div>
-                                <span className="text-[13px] font-semibold text-[var(--text-primary)]">
+                              <div className="min-w-0 flex-1">
+                                <p className="text-[13px] font-semibold text-[var(--text-primary)] truncate">
                                   {act.name}
-                                </span>
-                                <span className="ml-2 text-[11px] text-[var(--text-muted)]">
+                                </p>
+                                <span className="text-[11px] text-[var(--text-muted)]">
                                   {act.activity_type}
                                 </span>
                               </div>
                             </div>
-                            <div className="text-[12px] text-[var(--text-secondary)] font-mono">
+                            <div className="text-[12px] text-[var(--text-secondary)] font-mono shrink-0">
                               {act.actual_minutes ? `${act.actual_minutes}m` : `${act.estimated_minutes}m plan`}
                             </div>
                           </div>

@@ -39,7 +39,7 @@ export default function FocusPage() {
 
   return (
     <AppShell>
-      <div className="p-6 lg:p-8 max-w-[1200px] mx-auto space-y-6 animate-in fade-in duration-200">
+      <div className="p-4 md:p-6 lg:p-8 max-w-[1200px] mx-auto space-y-4 md:space-y-6 animate-in fade-in duration-200">
         {/* Page Header */}
         <div className="border-b border-[var(--border)] pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>

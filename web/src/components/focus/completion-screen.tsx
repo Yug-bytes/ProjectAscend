@@ -34,7 +34,7 @@ export default function CompletionScreen({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full max-w-[650px] bg-[var(--surface)] border border-[var(--border)] rounded-[18px] p-8 md:p-10 shadow-2xl flex flex-col space-y-6 text-center select-none max-h-[90vh] overflow-y-auto">
+      <div className="w-full max-w-[650px] bg-[var(--surface)] border border-[var(--border)] rounded-[18px] p-4 sm:p-8 md:p-10 shadow-2xl flex flex-col space-y-4 sm:space-y-6 text-center select-none max-h-[90vh] overflow-y-auto">
         {/* Top Section */}
         <div className="flex flex-col items-center space-y-2">
           <span className="text-[52px] leading-none select-none">🎉</span>
@@ -120,18 +120,18 @@ export default function CompletionScreen({
         </div>
 
         {/* Bottom Button Row */}
-        <div className="flex items-center justify-end gap-3 pt-2">
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center sm:justify-end gap-2.5 sm:gap-3 pt-2">
           <Link
             href="/insights"
             onClick={onClose}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border)] font-semibold text-[13px] transition-colors"
+            className="flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border)] font-semibold text-[13px] transition-colors min-h-[44px]"
           >
             <span>📊 View Insights</span>
           </Link>
 
           <button
             onClick={onClose}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-[10px] bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold text-[13px] transition-colors shadow-sm cursor-pointer"
+            className="flex items-center justify-center gap-2 px-6 py-3 sm:py-2.5 rounded-[10px] bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold text-[13px] transition-colors shadow-sm cursor-pointer min-h-[44px]"
           >
             <span>🚀 Continue</span>
           </button>

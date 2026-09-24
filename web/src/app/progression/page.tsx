@@ -77,7 +77,7 @@ export default function ProgressionPage() {
   if (!summary) {
     return (
       <AppShell>
-        <div className="p-6 lg:p-8 max-w-[1400px] mx-auto space-y-6 animate-pulse">
+        <div className="p-4 md:p-6 lg:p-8 max-w-[1400px] mx-auto space-y-4 md:space-y-6 animate-pulse">
           <div className="h-10 w-48 bg-[var(--surface-secondary)] rounded-[10px]" />
           <div className="h-64 bg-[var(--surface)] border border-[var(--border)] rounded-[14px]" />
         </div>
@@ -100,7 +100,7 @@ export default function ProgressionPage() {
 
   return (
     <AppShell>
-      <div className="p-6 lg:p-8 max-w-[1400px] mx-auto space-y-8">
+      <div className="p-4 md:p-6 lg:p-8 max-w-[1400px] mx-auto space-y-6 md:space-y-8">
         {/* Page Header */}
         <div className="border-b border-[var(--border)] pb-4 flex items-center justify-between flex-wrap gap-4">
           <div>
@@ -141,7 +141,7 @@ export default function ProgressionPage() {
         )}
 
         {/* Hero / Identity Card */}
-        <div className="rounded-[18px] border border-[var(--border)] bg-[var(--surface)] p-6 lg:p-8 shadow-sm">
+        <div className="rounded-[18px] border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-6 lg:p-8 shadow-sm">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             {/* Character Portrait with idle breathing */}
             <div className="shrink-0 flex flex-col items-center">

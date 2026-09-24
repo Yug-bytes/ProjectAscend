@@ -124,19 +124,19 @@ export default function WhatIfPanel({
                 </p>
               </div>
 
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 <button
                   type="button"
                   onClick={() => handleChangeAllocation(id, -5)}
                   disabled={!canDecrease}
-                  className="w-7 h-7 rounded-[8px] flex items-center justify-center bg-[var(--surface)] hover:bg-[var(--surface-hover)] border border-[var(--border-strong)] text-[var(--text-primary)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                  className="w-9 h-9 sm:w-8 sm:h-8 rounded-[8px] flex items-center justify-center bg-[var(--surface)] hover:bg-[var(--surface-hover)] border border-[var(--border-strong)] text-[var(--text-primary)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
                   title="Decrease by 5 min"
                 >
-                  <Minus size={14} />
+                  <Minus size={15} />
                 </button>
 
                 <span
-                  className={`w-16 text-center text-[13px] font-bold ${
+                  className={`w-14 sm:w-16 text-center text-[13px] font-bold ${
                     isOverridden ? "text-[var(--accent)]" : "text-[var(--text-primary)]"
                   }`}
                 >
@@ -147,10 +147,10 @@ export default function WhatIfPanel({
                   type="button"
                   onClick={() => handleChangeAllocation(id, 5)}
                   disabled={!canIncrease}
-                  className="w-7 h-7 rounded-[8px] flex items-center justify-center bg-[var(--surface)] hover:bg-[var(--surface-hover)] border border-[var(--border-strong)] text-[var(--text-primary)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                  className="w-9 h-9 sm:w-8 sm:h-8 rounded-[8px] flex items-center justify-center bg-[var(--surface)] hover:bg-[var(--surface-hover)] border border-[var(--border-strong)] text-[var(--text-primary)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
                   title="Increase by 5 min"
                 >
-                  <Plus size={14} />
+                  <Plus size={15} />
                 </button>
               </div>
             </div>

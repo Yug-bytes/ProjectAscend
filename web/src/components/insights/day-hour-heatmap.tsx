@@ -57,9 +57,10 @@ export default function DayHourHeatmap({ dayHour }: DayHourHeatmapProps) {
       </div>
 
       {/* Grid: 7 days x 4 blocks */}
-      <div className="pt-1">
-        {/* Column Headers */}
-        <div className="grid grid-cols-[44px_repeat(4,1fr)] gap-2 mb-2">
+      <div className="pt-1 overflow-x-auto pb-1">
+        <div className="min-w-[340px]">
+          {/* Column Headers */}
+          <div className="grid grid-cols-[44px_repeat(4,1fr)] gap-2 mb-2">
           <div />
           {BLOCK_LABELS.map((block) => (
             <div
@@ -127,6 +128,7 @@ export default function DayHourHeatmap({ dayHour }: DayHourHeatmapProps) {
               })}
             </div>
           ))}
+        </div>
         </div>
       </div>
     </div>

@@ -223,12 +223,12 @@ export default function FocusCard({
         </div>
 
         {/* Right Section: Action Controls */}
-        <div className="flex items-center gap-2.5 justify-end w-full md:w-1/3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 justify-center md:justify-end w-full md:w-1/3">
           {!sessionState.currentActivity ? (
             <button
               onClick={handleStart}
               disabled={selectedActivityId == null || activities.length === 0}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-[10px] bg-[var(--primary)] hover:bg-[var(--primary-hover)] disabled:opacity-50 text-white font-semibold text-[13px] transition-colors shadow-sm cursor-pointer disabled:cursor-not-allowed"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 rounded-[10px] bg-[var(--primary)] hover:bg-[var(--primary-hover)] disabled:opacity-50 text-white font-semibold text-[13px] transition-colors shadow-sm cursor-pointer disabled:cursor-not-allowed min-h-[44px]"
             >
               <Play className="w-4 h-4 fill-current" />
               <span>Start Focus</span>
@@ -238,7 +238,7 @@ export default function FocusCard({
               {sessionState.isRunning ? (
                 <button
                   onClick={handlePause}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border)] font-semibold text-[13px] transition-colors cursor-pointer"
+                  className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-3 sm:py-2.5 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border)] font-semibold text-[13px] transition-colors cursor-pointer min-h-[44px]"
                 >
                   <Pause className="w-4 h-4 text-[var(--primary)]" />
                   <span>Pause</span>
@@ -246,7 +246,7 @@ export default function FocusCard({
               ) : (
                 <button
                   onClick={handleResume}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border)] font-semibold text-[13px] transition-colors cursor-pointer"
+                  className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-3 sm:py-2.5 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border)] font-semibold text-[13px] transition-colors cursor-pointer min-h-[44px]"
                 >
                   <Play className="w-4 h-4 text-[var(--primary)] fill-current" />
                   <span>Resume</span>
@@ -255,7 +255,7 @@ export default function FocusCard({
 
               <button
                 onClick={handleComplete}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-[10px] bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold text-[13px] transition-colors shadow-sm cursor-pointer"
+                className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-3 sm:py-2.5 rounded-[10px] bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold text-[13px] transition-colors shadow-sm cursor-pointer min-h-[44px]"
               >
                 <Check className="w-4 h-4 stroke-[2.5]" />
                 <span>Complete</span>
@@ -263,8 +263,8 @@ export default function FocusCard({
 
               <button
                 onClick={() => setIsFullscreen(true)}
-                className="p-2.5 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-muted)] hover:text-[var(--text-primary)] border border-[var(--border)] transition-colors cursor-pointer"
-                title="Fullscreen Focus Mode"
+                className="p-3 sm:p-2.5 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-muted)] hover:text-[var(--text-primary)] border border-[var(--border)] transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+                title="Fullscreen focus mode"
               >
                 <Maximize2 className="w-4 h-4" />
               </button>

@@ -6,7 +6,7 @@ interface CircularTimerProps {
   elapsedSeconds: number;
   estimatedMinutes?: number;
   caption?: string; // "Focus Time" or "Paused"
-  size?: number; // default 288
+  size?: number; // default 288, used as max-size; scales down on mobile
   strokeWidth?: number; // default 12
 }
 
@@ -37,14 +37,12 @@ export default function CircularTimer({
 
   return (
     <div
-      className="relative flex items-center justify-center select-none"
-      style={{ width: size, height: size }}
+      className="relative flex items-center justify-center select-none w-full"
+      style={{ maxWidth: size, maxHeight: size, aspectRatio: "1 / 1" }}
     >
       <svg
-        width={size}
-        height={size}
         viewBox={`0 0 ${size} ${size}`}
-        className="transform -rotate-90"
+        className="transform -rotate-90 w-full h-full"
       >
         {/* Unfilled track ring */}
         <circle
@@ -76,10 +74,10 @@ export default function CircularTimer({
 
       {/* Center Labels */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
-        <span className="text-[11px] font-semibold tracking-wider text-[var(--text-muted)] uppercase mb-1">
+        <span className="text-[10px] sm:text-[11px] font-semibold tracking-wider text-[var(--text-muted)] uppercase mb-1">
           {caption}
         </span>
-        <span className="text-[38px] font-extrabold tracking-tight text-[var(--text-primary)] font-mono tabular-nums leading-none">
+        <span className="text-[28px] sm:text-[38px] font-extrabold tracking-tight text-[var(--text-primary)] font-mono tabular-nums leading-none">
           {timeText}
         </span>
       </div>

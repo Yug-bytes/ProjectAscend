@@ -49,13 +49,13 @@ export default function FocusMode({
   }, [isRunning, onPause, onResume, onComplete, onExit]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-[var(--background)] flex flex-col items-center justify-between p-8 md:p-12 select-none animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 bg-[var(--background)] flex flex-col items-center justify-between p-4 sm:p-8 md:p-12 select-none animate-in fade-in duration-200 overflow-auto">
       {/* Top Brand & Context */}
-      <div className="flex flex-col items-center text-center space-y-2 max-w-xl">
-        <span className="text-[11px] font-bold tracking-widest text-[var(--text-muted)] uppercase">
+      <div className="flex flex-col items-center text-center space-y-1.5 sm:space-y-2 max-w-xl shrink-0">
+        <span className="text-[10px] sm:text-[11px] font-bold tracking-widest text-[var(--text-muted)] uppercase">
           ASCEND • FOCUS MODE
         </span>
-        <h1 className="text-[28px] md:text-[32px] font-extrabold text-[var(--text-primary)] tracking-tight line-clamp-2">
+        <h1 className="text-[22px] sm:text-[28px] md:text-[32px] font-extrabold text-[var(--text-primary)] tracking-tight line-clamp-2">
           {activity.name}
         </h1>
         <div className="flex items-center gap-2">
@@ -66,7 +66,7 @@ export default function FocusMode({
       </div>
 
       {/* Center Circular Timer Ring */}
-      <div className="flex flex-col items-center justify-center my-auto space-y-4">
+      <div className="flex flex-col items-center justify-center my-auto space-y-3 sm:space-y-4 w-full max-w-[300px] px-4">
         <CircularTimer
           elapsedSeconds={elapsedSeconds}
           estimatedMinutes={activity.estimated_minutes}
@@ -74,18 +74,18 @@ export default function FocusMode({
           size={300}
           strokeWidth={14}
         />
-        <p className="text-[13px] text-[var(--text-muted)]">
+        <p className="text-[12px] sm:text-[13px] text-[var(--text-muted)]">
           Planned: {activity.estimated_minutes} min
         </p>
       </div>
 
       {/* Bottom Action Controls & Hints */}
-      <div className="flex flex-col items-center space-y-4 w-full max-w-md">
-        <div className="flex items-center justify-center gap-3 w-full">
+      <div className="flex flex-col items-center space-y-3 sm:space-y-4 w-full max-w-md shrink-0">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-3 w-full">
           {/* Pause / Resume button */}
           <button
             onClick={isRunning ? onPause : onResume}
-            className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border)] font-semibold text-[14px] transition-colors cursor-pointer"
+            className="flex-1 flex items-center justify-center gap-2 px-5 py-3.5 sm:py-3 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border)] font-semibold text-[14px] transition-colors cursor-pointer min-h-[44px]"
           >
             {isRunning ? (
               <>
@@ -103,7 +103,7 @@ export default function FocusMode({
           {/* Complete button */}
           <button
             onClick={onComplete}
-            className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold text-[14px] transition-colors shadow-sm cursor-pointer"
+            className="flex-1 flex items-center justify-center gap-2 px-5 py-3.5 sm:py-3 rounded-[10px] bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold text-[14px] transition-colors shadow-sm cursor-pointer min-h-[44px]"
           >
             <Check className="w-4 h-4 stroke-[2.5]" />
             <span>Complete</span>
@@ -112,7 +112,7 @@ export default function FocusMode({
           {/* Exit button */}
           <button
             onClick={onExit}
-            className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-muted)] hover:text-[var(--text-primary)] border border-[var(--border)] font-medium text-[13px] transition-colors cursor-pointer"
+            className="flex items-center justify-center gap-1.5 px-4 py-3.5 sm:py-3 rounded-[10px] bg-[var(--surface-secondary)] hover:bg-[var(--surface-hover)] text-[var(--text-muted)] hover:text-[var(--text-primary)] border border-[var(--border)] font-medium text-[13px] transition-colors cursor-pointer min-h-[44px]"
             title="Exit fullscreen (Esc)"
           >
             <X className="w-4 h-4" />
@@ -120,8 +120,12 @@ export default function FocusMode({
           </button>
         </div>
 
-        <p className="text-[11px] text-[var(--text-muted)] tracking-wide">
+        {/* Desktop keyboard hints — hidden on mobile */}
+        <p className="hidden md:block text-[11px] text-[var(--text-muted)] tracking-wide">
           No distractions. Just progress. (Esc to exit • Space to pause • Ctrl+Enter to complete)
+        </p>
+        <p className="md:hidden text-[11px] text-[var(--text-muted)] tracking-wide">
+          No distractions. Just progress.
         </p>
       </div>
     </div>

@@ -75,14 +75,14 @@ export function CharacterPortrait({
 
   return (
     <div
-      className={`relative w-[216px] h-[216px] rounded-[18px] border border-[var(--border-strong)] bg-[var(--surface-elevated)] flex items-center justify-center p-2 shadow-sm overflow-hidden select-none ${className}`}
+      className={`relative w-[170px] h-[170px] sm:w-[216px] sm:h-[216px] rounded-[18px] border border-[var(--border-strong)] bg-[var(--surface-elevated)] flex items-center justify-center p-2 shadow-sm overflow-hidden select-none ${className}`}
     >
       <div
         key={`${character.id}-${stage}`}
-        className="relative w-[200px] h-[200px] flex items-center justify-center transition-opacity duration-300 animate-in fade-in"
+        className="relative w-full h-full flex items-center justify-center transition-opacity duration-300 animate-in fade-in"
       >
         {!imgError ? (
-          <div className="portrait-sprite-container relative w-[200px] h-[200px] flex items-center justify-center animate-idle-breathe">
+          <div className="portrait-sprite-container relative w-full h-full flex items-center justify-center animate-idle-breathe">
             <Image
               src={assetPath}
               alt={`${character.name} Stage ${stage}`}
@@ -90,7 +90,7 @@ export function CharacterPortrait({
               height={200}
               unoptimized
               priority
-              className="object-contain w-[200px] h-[200px] [image-rendering:pixelated] [image-rendering:crisp-edges]"
+              className="object-contain w-full h-full max-w-[200px] max-h-[200px] [image-rendering:pixelated] [image-rendering:crisp-edges]"
               onError={() => setImgError(true)}
             />
           </div>
